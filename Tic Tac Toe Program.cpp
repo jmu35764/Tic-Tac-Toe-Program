@@ -28,6 +28,7 @@ void displayBoard(char array[3][3])
 	//Dashed Line
 	cout << setw(4) << left << "  " << "---------" << endl;
 
+	// Tic tac toe grid
 	for (int x = 0; x <= 2; x++)
 	{
 		cout << "|" << x + 1 << "|" << setw(2) << left << " ";
