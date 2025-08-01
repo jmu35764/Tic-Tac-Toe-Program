@@ -5,25 +5,90 @@
 #include <iomanip>
 using namespace std;
 
+void initializeBoard(char array[3][3])
+{
+	//array[3][3] = {'*','*','*'};
+
+	for (int a = 0; a <= 2; a++)
+	{
+		//cout << "|" << a + 1 << "|" << setw(2) << left << " ";
+
+		for (int b = 0; b <= 2; b++)
+		{
+			array[a][b] = '*';
+		}
+	}
+}
+
+void displayBoard(char array[3][3])
+{
+	//Numbers on top Row
+	cout << setw(5) << left << " " << setw(3) << left << "1" << setw(3) << left << "2" << setw(3) << left << "3" << endl;
+
+	//Dashed Line
+	cout << setw(4) << left << "  " << "---------" << endl;
+
+	for (int x = 0; x <= 2; x++)
+	{
+		cout << "|" << x + 1 << "|" << setw(2) << left << " ";
+
+		for (int y = 0; y <= 2; y++)
+		{
+			cout << setw(3) << left << array[x][y];
+		}
+
+		cout << endl;
+
+	}
+	cout << endl;
+	cout << "(Hit enter to continue)" << endl;
+	cout << endl;
+}
+
+
 int main()
 {
-	//Initialize board function
-	char square[3][3][3] = {{'*','*','*'},{'*','*','*'},{'*','*','*'}};
+	char empty[3][3];
 
-	cout << setw(6) << right << " " << setw(5) << right << "1" << setw(5) << right << "2" << setw(5) << right << "3" << endl;
-	cout << setw(6) << right << "|1|" << setw(5) << right;
-	cout << square[0][0][0] << setw(5) << right << square[1][0][0] << setw(5) << right << square[2][0][0];
+	initializeBoard(empty);
+	displayBoard(empty);
 
+	// placeToken function
+	int row;
+	int column;
+
+	cout << "Player 1's turn" << endl;
+	cout << "Enter row number (must be 1, 2, or 3): ";
+
+
+	//getlocation()
+
+	cin >> row;
+
+	while (empty[row][column] != '*')
+	{
+		while (row != 1 || row != 2 || row != 3)
+		{
+			cout << "Must enter a value from 1 to 3" << endl;
+			cin >> row;
+		}
+
+		cout << "Enter Column Number (must be 1, 2, or 3): ";
+		cin >> column;
+
+		while (column != 1 || column != 2 || column != 3)
+		{
+			cout << "Must enter a value from 1 to 3" << endl;
+			cin >> column;
+		}
+
+		if (empty[row][column] != '*')
+		{
+			cout << "This space is already filled. Pick a new space." << endl;
+		}
+
+	}
 
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
