@@ -40,11 +40,13 @@ void displayBoard(char array[3][3])
 		}
 
 		cout << endl;
-
 	}
+	
+	cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	cout << "Press enter to continue \n";
+	cin.get();
 	cout << endl;
-	cout << "(Hit enter to continue)" << endl;
-	cout << endl;
+
 }
 
 void getLocation(int &row, int &column)
@@ -142,13 +144,15 @@ string checkForWinner(char token, char board[3][3])
 				}
 			}
 		}
+
+		if (counter == 9)
+		{
+			output = "NO_SPACE";
+			return output;
+		}
 	}
 
-	if (counter == 9)
-	{
-		output = "NO_SPACE";
-		return output;
-	}
+
 }
 
 string getBoardState(char token, char array[3][3])
@@ -163,7 +167,7 @@ string getBoardState(char token, char array[3][3])
 	{
 		return "TIE";
 	}
-	else if (STATE == "WINNER")
+	else if (STATE == "WIN")
 	{
 		if (token == 'X')
 		{
@@ -185,6 +189,7 @@ void placeToken(char token, char array[3][3])
 
 	while(array[row-1][column-1] != '*')
 	{
+		cout << endl;
 		cout << "This space is already filled. Pick a new space." << endl;
 		getLocation(row, column);
 	}
@@ -208,35 +213,38 @@ int main()
 
 	while (boardstate == "PLAY")
 	{
+		cout << "Player 1's turn." << endl;
+		placeToken(player1_token, empty);
+		displayBoard(empty);
+		boardstate = getBoardState(player1_token, empty);
 
-			cout << "Player 1's turn." << endl;
-			placeToken(player1_token, empty);
+
+
+		if (boardstate == "PLAY")
+		{
+			cout << "Player 2's turn." << endl;
+			placeToken(player2_token, empty);
 			displayBoard(empty);
-			boardstate = getBoardState(player1_token, empty);
+			boardstate = getBoardState(player2_token, empty);
 
-			if (boardstate == "PLAY")
-			{
-				cout << "Player 2's turn." << endl;
-				placeToken(player2_token, empty);
-				displayBoard(empty);
-			}
+		}
 	}
-
-
-	cout << boardstate << endl;
 
 	if (boardstate == "X_WINS")
 	{
+		cout << "******************************" << endl;
 		cout << "Player 1 wins" << endl;
 	}
 	
 	else if (boardstate == "O_WINS")
 	{
+		cout << "******************************" << endl;
 		cout << "Player 2 wins" << endl;
 	}
 
 	else if (boardstate == "TIE")
 	{
+		cout << "******************************" << endl;
 		cout << "Tie" << endl;
 	}
 
