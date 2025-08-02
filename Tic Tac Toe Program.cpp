@@ -204,12 +204,12 @@ void placeToken(char token, char array[3][3])
 int main()
 {
 	char empty[3][3];
-	int turn = 1;
-	bool nowin = true;
 	char player1_token = 'X';
 	char player2_token = 'O';
 	string boardstate = "PLAY";
 
+	cout << "NOTE: YOU NEED TO PRESS ENTER TWICE AT THE BEGINNING. I DON'T KNOW HOW TO FIX THIS" << endl;
+	cout << endl;
 
 	initializeBoard(empty);
 	displayBoard(empty);
