@@ -11,7 +11,7 @@ int column;
 
 void initializeBoard(char array[3][3])
 {
-
+	// Loops through the array, adding the star character
 	for (int a = 0; a <= 2; a++)
 	{
 		for (int b = 0; b <= 2; b++)
@@ -42,6 +42,7 @@ void displayBoard(char array[3][3])
 		cout << endl;
 	}
 	
+	// Makes the function stop until an input is entered
 	cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	cout << "Press enter to continue \n";
 	cin.get();
@@ -74,8 +75,8 @@ string checkForWinner(char token, char board[3][3])
 	string output;
 	int three = 0;
 	int counter = 0;
-	//int across = 0;
-	//int down = 0;
+
+	// The following "if" statements go through each possible winning scenario
 
 	if (token == board[0][0] && board[0][0] == board[0][1] && board[0][0] == board[0][2])
 	{
@@ -127,6 +128,7 @@ string checkForWinner(char token, char board[3][3])
 		return output;
 	}
 
+	// If none of the winning scenarios are found in the array, check if space is left
 	while (three == 0 && counter <= 9)
 	{
 		for (int a = 0; a <= 2; a++)
@@ -144,7 +146,8 @@ string checkForWinner(char token, char board[3][3])
 				}
 			}
 		}
-
+		
+		// If all parts of the grid are filled, output NO_SPACE
 		if (counter == 9)
 		{
 			output = "NO_SPACE";
@@ -230,21 +233,20 @@ int main()
 		}
 	}
 
+	cout << "******************************" << endl;
+
 	if (boardstate == "X_WINS")
 	{
-		cout << "******************************" << endl;
 		cout << "Player 1 wins" << endl;
 	}
 	
 	else if (boardstate == "O_WINS")
 	{
-		cout << "******************************" << endl;
 		cout << "Player 2 wins" << endl;
 	}
 
 	else if (boardstate == "TIE")
 	{
-		cout << "******************************" << endl;
 		cout << "Tie" << endl;
 	}
 
